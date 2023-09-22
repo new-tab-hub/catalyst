@@ -1,0 +1,49 @@
+<header class="bg-{{ settings.themeColor or 'stone' }}-800 text-{{ settings.themeColor or 'stone' }}-100 select-none">
+
+  <div class="container flex py-2 gap-2 items-center">
+    <div class="">
+      {{ header.logo | svgContents("h-20 w-20") | safe }}
+    </div>
+    <div class="">
+      <div class="text-base leading-none">{{ header.title }}</div>
+      <div class="text-xl sm:text-3xl leading-none">{{ header.subTitle }}</div>
+    </div>
+
+  </div>
+
+  <div class="bg-{{ settings.themeColor or 'stone' }}-700">
+    <div class="container flex justify-between items-center">
+
+      <nav class="flex-1">
+        {%- if header.links %}
+        <ul class="list-none p-0 m-0 md:flex gap-4">
+          {% for item in header.links %}
+            <li class="leading-none">
+              <a href="{{ item.url }}" class="py-2 px-3 inline-flex gap-0.5 items-center whitespace-nowrap hover:bg-{{ settings.themeColor or 'stone' }}-600">
+                {%- if item.icon %}
+                  {% phicon item.icon, "duotone" %}
+                {% endif -%}
+                <span>{{ item.name }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        {% endif -%}
+      </nav>
+
+      <div class="">
+        <ul class="list-none p-0 m-0  md:flex gap-4">
+          <li class="leading-none">
+            <span @click="toggleTheme" role="switch" aria-checked="false"
+                  class="p-2 inline-flex gap-0.5 items-center whitespace-nowrap cursor-pointer hover:bg-{{ settings.themeColor or 'stone' }}-600">
+              <span x-show="theme.dark">{% phicon "moon", "duotone" %}</span>
+              <span x-show="!theme.dark">{% phicon "sun", "duotone" %}</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</header>

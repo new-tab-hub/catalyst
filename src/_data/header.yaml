@@ -1,0 +1,13 @@
+title: "Catalyst"
+subTitle: "Demo starter page"
+logo: "/src/assets/images/hacker-cat-color.svg"
+links:
+  - name: "Contribute"
+    url: "https://github.com/new-tab-hub/catalyst"
+    icon: "git-pull-request"
+  - name: "GitHub"
+    url: "https://github.com/new-tab-hub/catalyst"
+    icon: "github-logo"
+  - name: "WiKi"
+    url: "#"
+    icon: "coda-logo"

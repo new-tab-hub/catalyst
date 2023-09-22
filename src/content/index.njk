@@ -1,0 +1,86 @@
+---
+layout: base.njk
+permalink: /
+title: "Catalyst - A beautiful, modern, and responsive starter page for your Browser."
+description: "Catalyst is a beautiful, modern, and responsive starter page for your Browser."
+---
+
+{# Search Engine #}
+<section class="py-12 md:py-20 lg:py-24">
+  <div class="container px-8">
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+
+      <div class="md:order-2 sm:col-span-2">
+        <div class="max-w-md mx-auto relative">
+          <div @click="toggleSearchEngine()"
+               :title="searchEngine"
+               class="absolute border-2 left-3 top-3 h-8 w-8 rounded-full inline-flex items-center justify-center overflow-hidden bg-stone-50 transition-all cursor-pointer">
+            <img class="h-8 w-8" style="min-width: 2rem"
+                 src="{{ "https://duckduckgo.com/" | getFavicon }}"
+                 :src="searchEngineIcon"
+                 alt="DuckDuckGo" width="32" height="32">
+          </div>
+          <form action="javascript:void(0);"
+                method="get"
+                @submit="submitSearchEngine()"
+                class="w-full">
+            <input type="text" name="q" autofocus="autofocus" autocomplete="off"
+                   placeholder="Search the web or type a URL"
+                   x-ref="searchInput"
+                   class="w-full h-14 px-14 bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200">
+          </form>
+          <div class="absolute right-0 top-0 h-14 w-14 cursor-pointer flex items-center justify-center text-stone-500 dark:text-stone-200"
+               @click="submitSearchEngine()">
+            {% phicon "magnifying-glass", "regular", { class: "h-6 w-6" } %}
+          </div>
+        </div>
+      </div>
+
+      <div class="md:order-1">
+        <div class="text-2xl font-light whitespace-nowrap" x-text="today.fullDate">Full Date</div>
+        <div class="text-7xl font-thin lowercase whitespace-nowrap" x-text="today.time">Time</div>
+      </div>
+      <div class="md:order-3">
+        {# Placeholder for your own features #}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+{# Services #}
+<section class="pb-12 md:pb-20">
+  <div class="container px-8">
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+      {% for service in services %}
+        <div class="">
+          <div class="flex items-center gap-4 mb-3 mx-3">
+            {% phicon service.icon or 'paw-print', 'duotone', { class: 'w-8 h-8' } %}
+            <h2 class="text-lg font-normal">{{ service.name }}</h2>
+          </div>
+          <ul class="list-none m-0 p-0">
+            {% for link in service.links %}
+              <li class="relative flex w-full items-center gap-4 bg-stone-300/80 hover:bg-stone-400/50 dark:bg-stone-800/80 dark:hover:bg-stone-700/60 py-2 px-3 mb-1 transition-all">
+                <span class="w-10 h-10 rounded inline-flex items-center justify-center bg-stone-200 dark:bg-stone-300">
+                <img src="{{ link.favicon or link.url | getFavicon }}"
+                     loading="lazy"
+                     decoding="async"
+                     alt="favicon for {{ link.name }}"
+                     class="w-6 h-6"
+                     width="24" height="24">
+                  </span>
+                <a href="{{ link.url }}" class="leading-none">
+                  <span class="absolute inset-0"></span>
+                  {{ link.name }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
