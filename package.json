@@ -16,7 +16,7 @@
     "watch:tailwind": "npx tailwindcss --postcss -i src/assets/css/main.css -o ./_site/css/main.css --watch",
     "build:tailwind": "npx tailwindcss --postcss -i src/assets/css/main.css -o ./_site/css/main.css --minify",
     "start": "ELEVENTY_ENV=development npm-run-all --parallel watch:*",
-    "build": "ELEVENTY_ENV=production npm-run-all --serial build:js build:tailwind build:11ty",
+    "build": "ELEVENTY_ENV=production npm-run-all --serial build:js build:11ty build:tailwind",
     "debugstart": "DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
     "benchmark": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
